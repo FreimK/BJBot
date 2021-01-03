@@ -1,1 +1,5 @@
-__pycache__/venv/.idea/convars.py/convars.py
+__pycache__/
+venv/
+.idea/
+convars.py
+/convars.py
