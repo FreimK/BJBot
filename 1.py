@@ -1,14 +1,15 @@
 import os
 import discord
+from discord import utils
 
-token = 'Gtt_GKhwF9Q1TXUtZ9gWcAPg_HAeBYMo'
+token = 'Nzk1MzI5NDMxNDYzMjY0MjU2.X_HyQA.DG2Rw1RPInS7DV-7tgV204dpGJk'
 
 id = 795336952022958130
 
 roli = {
-    '♂️': 756976295681720500,
-    '🗑️': 773173503829868555,
-    '⛓️': 756976920268112024
+    '♂️': 756976295681720500, #Instructor
+    '🗑️': 773173503829868555, #Junkyard keeper
+    '⛓️': 756976920268112024 #Leatherman
 }
 count = ()
 
@@ -25,7 +26,7 @@ class Main(discord.Client):
 
             try:
                 emoji = str(payload.emoji) # эмоджик который выбрал чувак
-                role = utils.get(message.guild.roles, id=roliS[emoji]) # объект выбранной роли
+                role = utils.get(message.guild.roles, id=roli[emoji]) # объект выбранной роли
                 await member.add_roles(role) # человек получает роль
                 print('{0.display_name} была выдана роль {1.name} в нашем gym'.format(member, role))
 
@@ -33,6 +34,7 @@ class Main(discord.Client):
                 print('Не найдена роль для данного эмодзи'+ emoji)
             except Exception as e:
                 print(repr(e))
+
 
     async def on_raw_reaction_remove(self, payload):
         channel = self.get_channel(payload.channel_id) # получаем объект канала
