@@ -1,8 +1,6 @@
 import discord
 from discord import utils
-#from convars import TOKEN
-
-token = ' Nzk1MzI5NDMxNDYzMjY0MjU2.X_HyQA.LHAFiAYmjzmmm9Re0FEoATzw5ZI'
+from convars import TOKEN
 
 ROLES = {
     '♂️': 756976295681720500,  # Instructor
@@ -26,7 +24,7 @@ class Main(discord.Client):
             try:
                 emoji = str(payload.emoji)  # эмоджик который выбрал чувак
                 role = utils.get(self.main_guild.roles, id=ROLES[emoji])  # объект выбранной роли
-                channel = self.get_channel(payload.channel_id) # объект канала 
+                channel = self.get_channel(payload.channel_id) # объект канала
                 message = await channel.fetch_message(payload.message_id) # берется объект сообщения
                 await member.add_roles(role)  # человек получает роль
                 print('{0.display_name} была выдана роль {1.name} в нашем gym'.format(member, role))
@@ -38,4 +36,4 @@ class Main(discord.Client):
 
 
 client = Main()
-client.run(token)
+client.run(TOKEN)
