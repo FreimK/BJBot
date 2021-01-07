@@ -28,7 +28,7 @@ class Main(discord.Client):
                 message = await channel.fetch_message(payload.message_id) # берется объект сообщения
                 await member.add_roles(role)  # человек получает роль
                 print('{0.display_name} была выдана роль {1.name} в нашем gym'.format(member, role))
-                await message.remove_reaction(emoji, member) # удаляется реакция
+                await message.remove_reaction(emoji, member)  # удаляется реакция
             except KeyError:
                 print('Не найдена роль для данного эмодзи ' + emoji)
             except Exception as e:
