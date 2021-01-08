@@ -24,10 +24,14 @@ class Main(discord.Client):
             try:
                 emoji = str(payload.emoji)  # эмоджик который выбрал чувак
                 role = utils.get(self.main_guild.roles, id=ROLES[emoji])  # объект выбранной роли
-                channel = self.get_channel(payload.channel_id) # объект канала
-                message = await channel.fetch_message(payload.message_id) # берется объект сообщения
-                await member.add_roles(role)  # человек получает роль
-                print('{0.display_name} была выдана роль {1.name} в нашем gym'.format(member, role))
+                channel = self.get_channel(payload.channel_id)  # объект канала
+                message = await channel.fetch_message(payload.message_id)  # берется объект сообщения
+                if role in member.roles:  # Если у человека уже есть эта роль
+                    await member.remove_roles(role, reason="Bot action")  # Бот её забирает
+                    print(f"{member} потерял роль {role}")
+                else:  # Если нет
+                    await member.add_roles(role, reason="Bot action")  # Человек получает роль
+                    print(f"{member} получил роль {role}")
                 await message.remove_reaction(emoji, member)  # удаляется реакция
             except KeyError:
                 print('Не найдена роль для данного эмодзи ' + emoji)
