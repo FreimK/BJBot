@@ -33,7 +33,7 @@ async def on_raw_reaction_add(payload):
             message = await channel.fetch_message(payload.message_id)  # берется объект сообщения
             if role in member.roles:  # Если у человека уже есть эта роль
                 await member.remove_roles(role, reason="Bot action")  # Бот её забирает
-                print(f"{member} потерял роль {rol  e}")
+                print(f"{member} потерял роль {role}")
             else:  # Если нет
                 await member.add_roles(role, reason="Bot action")  # Человек получает роль
                 print(f"{member} получил роль {role}")
