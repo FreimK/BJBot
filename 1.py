@@ -14,7 +14,7 @@ class Main(discord.Client):
     main_guild: int
 
     async def on_ready(self):
-        print('Logged on as {0}!'.format(self.user))
+        print(f'Logged on as {self.user}!')
         self.main_guild = utils.get(self.guilds, id=749339969516208179)
         print(self.main_guild)
 
@@ -34,7 +34,7 @@ class Main(discord.Client):
                     print(f"{member} получил роль {role}")
                 await message.remove_reaction(emoji, member)  # удаляется реакция
             except KeyError:
-                print('Не найдена роль для данного эмодзи ' + emoji)
+                print(f'Не найдена роль для данного эмодзи {emoji}')
             except Exception as e:
                 print(repr(e))
 
