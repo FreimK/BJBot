@@ -1,7 +1,10 @@
 import discord
+import os
 from discord import utils
-from discord.ext import commands
-from convars import TOKEN
+
+
+TOKEN = os.environ.get("TOKEN")
+
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='!')
@@ -12,14 +15,13 @@ ROLES = {
     '⛓️': 756976920268112024  # Leatherman
 }
 
-
-
 main_guild: int
 
 
 ban = ['хуй', 'пизда', 'джигурда'] # Можешь ещё слов добавить
 
 voice = 749339969516208183
+
 
 @client.event
 async def on_ready():
@@ -50,7 +52,6 @@ async def on_raw_reaction_add(payload):
             print(repr(e))
 
 
-
 #Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
 @client.event
 async def on_message(message):
@@ -62,10 +63,6 @@ async def on_message(message):
             if shit in ban:
                  await message.delete()
                  await message.author.send(f'{message.author.name}, лучше такое не писать...')
-
-
-
-
 
 
 client.run(TOKEN)
