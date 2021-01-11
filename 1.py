@@ -1,8 +1,10 @@
 import discord
 from discord import utils
+from discord.ext import commands
 from convars import TOKEN
 
 client = discord.Client()
+bot = commands.Bot(command_prefix='!')
 
 ROLES = {
     '♂️': 756976295681720500,  # Instructor
@@ -11,7 +13,11 @@ ROLES = {
 }
 
 
+
 main_guild: int
+
+
+ban = ['хуй', 'пизда', 'джигурда'] # Можешь ещё слов добавить
 
 voice = 749339969516208183
 
@@ -42,6 +48,23 @@ async def on_raw_reaction_add(payload):
             print('Не найдена роль для данного эмодзи ' + emoji)
         except Exception as e:
             print(repr(e))
+
+
+
+#Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
+@client.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    else:
+        content = message.content.split()
+        for shit in content:
+            if shit in ban:
+                 await message.delete()
+                 await message.author.send(f'{message.author.name}, лучше такое не писать...')
+
+
+
 
 
 
