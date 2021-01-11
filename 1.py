@@ -1,6 +1,7 @@
 import discord
 import os
 from discord import utils
+from discord.ext import commands
 
 
 TOKEN = os.environ.get("TOKEN")
@@ -20,7 +21,7 @@ ROLES = {
 main_guild: int
 
 
-ban = ['хуй', 'пизда', 'джигурда'] # Можешь ещё слов добавить
+ban = ['хуй', 'пизда', 'джигурда']  # Можешь ещё слов добавить
 
 voice = 749339969516208183
 
@@ -54,7 +55,7 @@ async def on_raw_reaction_add(payload):
             print(repr(e))
 
 
-#Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
+# Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
 @client.event
 async def on_message(message):
     if message.author == bot.user:
@@ -63,8 +64,8 @@ async def on_message(message):
         content = message.content.split()
         for shit in content:
             if shit in ban:
-                 await message.delete()
-                 await message.author.send(f'{message.author.name}, лучше такое не писать...')
+                await message.delete()
+                await message.author.send(f'{message.author.name}, лучше такое не писать...')
 
 
 client.run(TOKEN)
