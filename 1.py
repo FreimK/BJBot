@@ -10,9 +10,11 @@ client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 
 ROLES = {
-    '♂️': 756976295681720500,  # Instructor
-    '🗑️': 773173503829868555,  # Junkyard keeper
-    '⛓️': 756976920268112024  # Leatherman
+    '🔨': 725762419011485766,    # R6S
+    '🤡': 733335734290743438,    # Dota 2
+    '🕵': 797921418201006140,    # Among Us
+    '💀': 797922315416371212,    # Dead by Daylight
+    '🚗': 797922938171031582,    # Rocket League
 }
 
 main_guild: int
