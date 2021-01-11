@@ -4,7 +4,7 @@ from discord import utils
 from discord.ext import commands
 
 
-TOKEN = "Nzk1MzI5NDMxNDYzMjY0MjU2.X_HyQA.Kr33fAw-E5owkMjYAxYQp7Jf7eQ"
+TOKEN = os.environ.get("TOKEN")
 
 
 client = discord.Client()
