@@ -21,7 +21,7 @@ ROLES = {
 main_guild: int
 
 
-ban = ['хуй', 'пизда', 'джигурда']  # Можешь ещё слов добавить
+ban = ['хуй', 'пизда', 'джигурда'] # Список запрещённый слов
 
 
 
@@ -54,7 +54,6 @@ async def on_raw_reaction_add(payload):
             print(repr(e))
 
 
-# Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
 @client.event
 async def on_message(message):
     if message.author == bot.user:
