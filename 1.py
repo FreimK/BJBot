@@ -4,7 +4,7 @@ from discord import utils
 from discord.ext import commands
 
 
-TOKEN = os.environ.get("TOKEN")
+TOKEN = "Nzk1MzI5NDMxNDYzMjY0MjU2.X_HyQA.Kr33fAw-E5owkMjYAxYQp7Jf7eQ"
 
 
 client = discord.Client()
@@ -23,13 +23,12 @@ main_guild: int
 
 ban = ['хуй', 'пизда', 'джигурда']  # Можешь ещё слов добавить
 
-voice = 749339969516208183
 
 
 @client.event
 async def on_ready():
     print('Logged on as {0}!'.format(client.user))
-    client.main_guild = utils.get(client.guilds, id=749339969516208179)
+    client.main_guild = utils.get(client.guilds)
     print(client.main_guild)
 
 
@@ -61,9 +60,9 @@ async def on_message(message):
     if message.author == bot.user:
         return
     else:
-        content = message.content.split()
-        for shit in content:
-            if shit in ban:
+        content = message.content.lower()
+        for word in ban:
+            if word in content:
                 await message.delete()
                 await message.author.send(f'{message.author.name}, лучше такое не писать...')
 
