@@ -19,8 +19,9 @@ ROLES = {
     '6️⃣': 796033504131285024,    # Overwatch
 }
 
-FORBIDDEN_WORDS = ['глеб лох', 'глеблох']
+FORBIDDEN_WORDS = ['глеб лох', 'глеблох', 'хаддер лох', 'hadder лох']
 ROLE_MESSAGE_ID = 798490522624065546
+
 
 @client.event
 async def on_ready():
@@ -52,7 +53,6 @@ async def on_raw_reaction_add(payload):
             print(repr(e))
 
 
-# Глеб, прости пж, я создал эту ф-цию просто так, в качестве обучения
 @client.event
 async def on_message(message):
     if message.author == bot.user:
