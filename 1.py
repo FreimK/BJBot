@@ -4,26 +4,23 @@ from discord import utils
 from discord.ext import commands
 
 
-TOKEN = os.environ.get("TOKEN")
+TOKEN = os.environ.get('TOKEN')
 
 
 client = discord.Client()
 bot = commands.Bot(command_prefix='!')
 
 ROLES = {
-    '🔨': 725762419011485766,    # R6S
-    '🤡': 733335734290743438,    # Dota 2
-    '🕵': 797921418201006140,    # Among Us
-    '💀': 797922315416371212,    # Dead by Daylight
-    '🚗': 797922938171031582,    # Rocket League
+    '1️⃣': 725762419011485766,    # R6S
+    '2️⃣': 733335734290743438,    # Dota 2
+    '3️⃣': 797921418201006140,    # Among Us
+    '4️⃣': 797922315416371212,    # Dead by Daylight
+    '5️⃣': 797922938171031582,    # Rocket League
+    '6️⃣': 796033504131285024,    # Overwatch
 }
 
-main_guild: int
-
-
-ban = ['хуй', 'пизда', 'джигурда']  # Можешь ещё слов добавить
-
-
+FORBIDDEN_WORDS = ['глеб лох', 'глеблох']
+ROLE_MESSAGE_ID = 798490522624065546
 
 @client.event
 async def on_ready():
@@ -35,7 +32,8 @@ async def on_ready():
 @client.event
 async def on_raw_reaction_add(payload):
     member = payload.member
-    if payload.message_id == 795336952022958130:
+    print(payload.emoji.name)
+    if payload.message_id == ROLE_MESSAGE_ID:
         try:
             emoji = str(payload.emoji)  # эмоджик который выбрал чувак
             role = utils.get(client.main_guild.roles, id=ROLES[emoji])  # объект выбранной роли
@@ -61,7 +59,7 @@ async def on_message(message):
         return
     else:
         content = message.content.lower()
-        for word in ban:
+        for word in FORBIDDEN_WORDS:
             if word in content:
                 await message.delete()
                 await message.author.send(f'{message.author.name}, лучше такое не писать...')
